@@ -1,0 +1,241 @@
+// Variables
+$primary-color: #2c3e50;
+$secondary-color: #34495e;
+$accent-color: #3498db;
+$border-color: #bdc3c7;
+$background-color: #ecf0f1;
+$text-color: #2c3e50;
+$table-header-bg: #34495e;
+$table-header-color: white;
+$table-even-bg: #f8f9fa;
+$shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+// Mixins
+@mixin responsive($breakpoint) {
+    @media (max-width: $breakpoint) {
+        @content;
+    }
+}
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// Styles généraux
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: $text-color;
+    background-color: $background-color;
+    margin: 0;
+    padding: 20px;
+}
+
+.survey-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: $shadow;
+    // Responsive
+    @include responsive(768px) {
+        padding: 15px;
+    }
+}
+
+// En-têtes
+.survey-title {
+    text-align: center;
+    color: $primary-color;
+    margin-bottom: 30px;
+    border-bottom: 2px solid $border-color;
+    padding-bottom: 15px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.section-title {
+    color: $secondary-color;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $border-color;
+    font-size: 1.3rem;
+    font-weight: 600;
+    &:first-of-type {
+        margin-top: 0;
+    }
+}
+
+// Tableaux
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    th,
+    td {
+        border: 1px solid $border-color;
+        padding: 12px 15px;
+        text-align: left;
+        vertical-align: top;
+    }
+    th {
+        background-color: $table-header-bg;
+        color: $table-header-color;
+        font-weight: 600;
+        text-align: left;
+    }
+    tr:nth-child(even) {
+        background-color: $table-even-bg;
+    }
+    // Responsive
+    @include responsive(768px) {
+        font-size: 0.9rem;
+        th,
+        td {
+            padding: 8px 10px;
+        }
+    }
+    @include responsive(480px) {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+// Séparateurs
+.section-divider {
+    height: 1px;
+    background-color: $border-color;
+    margin: 30px 0;
+    width: 100%;
+}
+
+// Coordonnées GPS
+.gps-section {
+    margin: 25px 0;
+    padding: 0 10px;
+}
+
+.gps-field {
+    margin-bottom: 15px;
+    padding: 8px 0;
+    strong {
+        display: inline-block;
+        width: 100px;
+        font-weight: 600;
+        color: $secondary-color;
+    }
+    span {
+        color: $text-color;
+        font-family: monospace;
+        background-color: #f8f9fa;
+        padding: 2px 6px;
+        border-radius: 3px;
+    }
+}
+
+.google-maps-link {
+    display: inline-block;
+    background-color: $accent-color;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 10px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+    &:hover {
+        background-color: darken($accent-color, 10%);
+        text-decoration: none;
+        color: white;
+    }
+    &:focus {
+        outline: 2px solid lighten($accent-color, 20%);
+        outline-offset: 2px;
+    }
+}
+
+// Section Connectivité
+.connectivity-section {
+    margin-top: 30px;
+    padding: 0 10px;
+    .connectivity-title {
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: $secondary-color;
+    }
+}
+
+// Styles pour le texte non renseigné
+em {
+    color: #95a5a6;
+    font-style: italic;
+}
+
+// Responsive design amélioré
+@include responsive(768px) {
+    body {
+        padding: 10px;
+    }
+    .survey-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    .section-title {
+        font-size: 1.1rem;
+        margin-top: 20px;
+        margin-bottom: 15px;
+    }
+    .gps-field {
+        strong {
+            width: 80px;
+            display: block;
+            margin-bottom: 5px;
+        }
+    }
+}
+
+@include responsive(480px) {
+    .survey-container {
+        padding: 10px;
+    }
+    .survey-title {
+        font-size: 1.3rem;
+        padding-bottom: 10px;
+    }
+    .section-title {
+        font-size: 1rem;
+    }
+    .gps-field {
+        margin-bottom: 12px;
+    }
+    .google-maps-link {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+    }
+}
+
+// Animation subtile pour les interactions
+.survey-container {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
